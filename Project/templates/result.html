@@ -3,9 +3,116 @@
     <head>
         <meta charset="UTF-8">
         <link href="static/css/style.css" rel="stylesheet">
+        <script src="/static/js/script.js"></script>
         <title>Gatava varoņa informācijas lapa</title>
     </head>
     <body>
-
+        <header class="charname">
+            {% for stat in stats %}
+            <h1>Jūsu varoņis</h1>
+                <h2>
+                    {{ stat.vards }}
+                </h2>
+            {% endfor %}
+        </header>
+        <div class="output">
+            {% for stat in stats %}
+            <h3>Spēks</h3>
+                <p>
+                    {{ stat.speks }}
+                </p>
+            {% endfor %}
+        </div>
+        <div class="output">
+            {% for stat in stats %}
+            <h3>Veiklība</h3>
+                <p>
+                    {{ stat.veikliba}}
+                </p>
+            {% endfor %}
+        </div>
+        <div class="output">
+            {% for stat in stats %}
+            <h3>Izturība</h3>
+                <p>
+                    {{ stat.izturiba }}
+                </p>
+            {% endfor %}
+        </div>
+        <div class="output">
+            {% for stat in stats %}
+            <h3>Harizma</h3>
+                <p>
+                    {{ stat.harizma }}
+                </p>
+            {% endfor %}
+        </div>
+        <div class="output">
+            {% for stat in stats %}
+            <h3>Manipulācija</h3>
+                <p>
+                    {{ stat.manipulacija }}
+                </p>
+            {% endfor %}
+        </div>
+        <div class="output">
+            {% for stat in stats %}
+            <h3>Savaldība</h3>
+                <p>
+                    {{ stat.savaldiba }}
+                </p>
+            {% endfor %}
+        </div>
+        <div class="output">
+            {% for stat in stats %}
+            <h3>Intelekts</h3>
+                <p>
+                    {{ stat.intelekts }}
+                </p>
+            {% endfor %}
+        </div>
+        <div class="output">
+            {% for stat in stats %}
+            <h3>Prāts</h3>
+                <p>
+                    {{ stat.prats }}
+                </p>
+            {% endfor %}
+        </div>
+        <div class="output">
+            {% for stat in stats %}
+            <h3>Apņēmība</h3>
+                <p>
+                    {{ stat.apnemiba }}
+                </p>
+            {% endfor %}
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    {% for column in characters[0].keys() %}
+                    <th>{{ column|upper }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for char in characters %}
+                    <tr>
+                        <td>{{ char.vards }}</td>
+                        <td>{{ char.speks }}</td>
+                        <td>{{ char.veikliba }}</td>
+                        <td>{{ char.izturiba }}</td>
+                        <td>{{ char.harizma }}</td>
+                        <td>{{ char.manipulacija }}</td>
+                        <td>{{ char.savaldiba }}</td>
+                        <td>{{ char.intelekts }}</td>
+                        <td>{{ char.prats }}</td>
+                        <td>{{ char.apnemiba }}</td>
+                        <td>{{ char.data }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </body>
-</html>
+    </html>
