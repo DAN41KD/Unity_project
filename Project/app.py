@@ -3,40 +3,74 @@ import sqlite3
 
 app = Flask(__name__)
 
+def init_db():
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS characters (
+        id INTEGER NOT NULL UNIQUE
+        vards TEXT,
+        speks TEXT,
+        veikliba TEXT,
+        izturiba TEXT,
+        harizma TEXT,
+        manipulacija TEXT,
+        savaldiba TEXT,
+        intelekts TEXT,
+        prats TEXT,
+        apnemiba TEXT,
+        data DATETIME DEFAULT CURRENT_TIMESTAMP,
+        PRIMARY KEY("id" AUTOINCREMENT)
+        )
+    ''')
+    conn.commit()
+    conn.close()
+
+init_db()
+
 @app.route('/')
 def index():
     return render_template('index.html')
 
 @app.route("/submit", methods=['POST'])
 def submit():
-    vards = request.form['nam']
-    spe = request.form['str']
-    vei = request.form['dex']
-    izt = request.form['sta']
-    har = request.form['cha']
-    man = request.form['man']
-    sav = request.form['com']
-    inte = request.form['int']
-    pr = request.form['wit']
-    apn = request.form['res']
-    
+    try:
+        data = {
+            vards = request.form['nam']
+            spe = request.form['str']
+            vei = request.form['dex']
+            izt = request.form['sta']
+            har = request.form['cha']
+            man = request.form['man']
+            sav = request.form['com']
+            inte = request.form['int']
+            pr = request.form['wit']
+            apn = request.form['res']
+        }
+    except KeyError as e:
+        return "Nav šī atbildi: {e}", 400
+    except ValueError as e:
+        return "Nekorekti dati", 400
+        
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
-    cursor.execute('INSERT INTO characters (vards, speks, veikliba, izturiba, harizma, manipulacija, savaldiba, intelekts, prats, apnemiba) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-                   (vards, spe, vei, izt, har, man, sav, inte, pr, apn))
+    cursor.execute('INSERT INTO characters (vards, speks, veikliba, izturiba, harizma, manipulacija, savaldiba, intelekts, prats, apnemiba) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', (data['vards'], data['spe'], data['vei'], data['izt'], data['har'], data['man'], data['sav'], data['inte'], data['pr'], data['apn']))
     conn.commit()
     conn.close()
+    return redirect(url_for('characters'))
 
-@app.route('/characters')
 def get_chars():
     conn = sqlite3.connect('database.db')
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
+    sort_columns = ['vards', 'speks', 'veikliba', 'izturiba', 'harizma', 'manipulacija', 'savaldiba', 'intelekts', 'prats', 'apnemiba', 'data']
+    sort_by = request.args.get('sort', 'data')
+    if sort_by not in sort_columns:
+        sort_by = 'data'
     page = request.args.get('page', 1, type=int)
     per_page = 10
-    sort_by = request.args.get('sort', 'id')
-    cursor.execute('SELECT vards, speks, veikliba, izturiba, harizma, manipulacija, savaldiba, intelekts, prats, apnemiba, data FROM characters ORDER BY {sort_by} LIMIT ? OFFSET ?',
-                   (per_page, (page-1)*per_page))
+    offset = (page - 1) * per_page
+    cursor.execute('SELECT vards, speks, veikliba, izturiba, harizma, manipulacija, savaldiba, intelekts, prats, apnemiba, data FROM characters ORDER BY {sort_by} LIMIT ? OFFSET ?', (per_page, offset)
     characters = cursor.fetchall()
     conn.close()
     return characters
@@ -46,7 +80,7 @@ def get_current_char():
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
     cursor.execute('SELECT vards, speks, veikliba, izturiba, harizma, manipulacija, savaldiba, intelekts, prats, apnemiba FROM characters ORDER BY data DESC')
-    stats = cursor.fetchone()[0]
+    stats = cursor.fetchone()
     conn.close()
     return stats
 
