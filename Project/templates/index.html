@@ -6,148 +6,255 @@
         <title>Varoņa informācijas lapa</title>
     </head>
     <body>
-        <header>
-            <h1>Kāds ir jusu varonis?</h1>
-            <p>Šeit Jūs varat uzzināt, par cik jūsu varonis ir stiprs, ātrs, prātīgs u.t.t.. Jums būs vajadzīgi pierakstīt atbildes uz jautājumiem, lai to uzzināt.</p>
-        </header>
-        <div>
-            <h3>Varoņu izveidošanas palīgs</h3>
-            <form id="Form" action="/submit" method="POST">
-                <fieldset>
-                    <legend>1. Kāds ir jūsu varoņa vārds?</legend>
-                    <input type="text" name="nam" required placeholder="Vārds Uzvārds">
-                </fieldset>
-                
-                <fieldset>
-                    <legend>2. Cik smagu kravu/objektu var pacelt jūsu varonis?</legend>
-                    <input type="radio" name="str" id="str1" value="●○○○○" required>
-                    <label for="str1">20 kg</label>
-                    <input type="radio" name="str" id="str2" value="●●○○○" required>
-                    <label for="str2">45 kg</label>
-                    <input type="radio" name="str" id="str3" value="●●●○○" required>
-                    <label for="str3">110 kg</label>
-                    <input type="radio" name="str" id="str4" value="●●●●○" required>
-                    <label for="str4">180 kg</label>
-                    <input type="radio" name="str" id="str5" value="●●●●●" required>
-                    <label for="str5">295 kg</label>
-                </fieldset>
-                
-                <fieldset>
-                    <legend>3. Kādā mērā viņš/viņa ir veikls/a?</legend>
-                    <input type="radio" name="dex" id="dex1" value="●○○○○" required>
-                    <label for="dex1">Neveikls/a</label>
-                    <input type="radio" name="dex" id="dex2" value="●●○○○" required>
-                    <label for="dex2">Normāls cilvēks</label>
-                    <input type="radio" name="dex" id="dex3" value="●●●○○" required>
-                    <label for="dex3">Atlets/e</label>
-                    <input type="radio" name="dex" id="dex4" value="●●●●○" required>
-                    <label for="dex4">Akrobāts</label>
-                    <input type="radio" name="dex" id="dex5" value="●●●●●" required>
-                    <label for="dex5">Neiespējami veikls</label>
-                </fieldset>
-                
-                <fieldset>
-                    <legend>4. Kāda veselība ir viņam/ai?</legend>
-                    <input type="radio" name="sta" id="sta1" value="●○○○○" required>
-                    <label for="sta1">Vējš var izgāzt no kājam</label>
-                    <input type="radio" name="sta" id="sta2" value="●●○○○" required>
-                    <label for="sta2">Vienu vai divus sitienus var izturēt</label>
-                    <input type="radio" name="sta" id="sta3" value="●●●○○" required>
-                    <label for="sta3">Rēti slimo</label>
-                    <input type="radio" name="sta" id="sta4" value="●●●●○" required>
-                    <label for="sta4">Var uzvarēt maratonā</label>
-                    <input type="radio" name="sta" id="sta5" value="●●●●●" required>
-                    <label for="sta5">Herakls</label>
-                </fieldset>
-                
-                <fieldset>
-                    <legend>5. Kādā mērā jūsu varonis var izveidot labu iespaidu par sevi?</legend>
-                    <input type="radio" name="cha" id="cha1" value="●○○○○" required>
-                    <label for="cha1">Cilvēki nevēlās rūnāt</label>
-                    <input type="radio" name="cha" id="cha2" value="●●○○○" required>
-                    <label for="cha2">Ir daži draugi</label>
-                    <input type="radio" name="cha" id="cha3" value="●●●○○" required>
-                    <label for="cha3">Viņam/ai tic</label>
-                    <input type="radio" name="cha" id="cha4" value="●●●●○" required>
-                    <label for="cha4">Ir attistīts personīgs magnetisms</label>
-                    <input type="radio" name="cha" id="cha5" value="●●●●●" required>
-                    <label for="cha5">Var kļut par kultūras priekšvādītāju</label>
-                </fieldset>
-                
-                <fieldset>
-                    <legend>6. Kāda spēja pārliecināt piemīt viņam/ai?</legend>
-                    <input type="radio" name="man" id="man1" value="●○○○○" required>
-                    <label for="man1">Vāja</label>
-                    <input type="radio" name="man" id="man2" value="●●○○○" required>
-                    <label for="man2">Var dažreiz ietekmēt citu domu</label>
-                    <input type="radio" name="man" id="man3" value="●●●○○" required>
-                    <label for="man3">Var diezgan labi manipulēt</label>
-                    <input type="radio" name="man" id="man4" value="●●●●○" required>
-                    <label for="man4">Viņš/viņa varētu kļut par politiku</label>
-                    <input type="radio" name="man" id="man5" value="●●●●●" required>
-                    <label for="man5">Var pārliecināt izdarīt jebko viņš/viņa prasa</label>
-                </fieldset>
-                
-                <fieldset>
-                    <legend>7. Vai viņš/viņa ir mierīgs/a?</legend>
-                    <input type="radio" name="com" id="com1" value="●○○○○" required>
-                    <label for="com1">Ir impulsīvs/a</label>
-                    <input type="radio" name="com" id="com2" value="●●○○○" required>
-                    <label for="com2">Pietiekami stabīls/a</label>
-                    <input type="radio" name="com" id="com3" value="●●●○○" required>
-                    <label for="com3">Diezgan grūti provocējams/jama</label>
-                    <input type="radio" name="com" id="com4" value="●●●●○" required>
-                    <label for="com4">Ļoti mierīgs/a</label>
-                    <input type="radio" name="com" id="com5" value="●●●●●" required>
-                    <label for="com5">Nekas nevar satraucēt</label>
-                </fieldset>
-                
-                <fieldset>
-                    <legend>8. Kāds ir IQ limenis viņam/ai?</legend>
-                    <input type="radio" name="int" id="int1" value="●○○○○" required>
-                    <label for="int1">IQ 80</label>
-                    <input type="radio" name="int" id="int2" value="●●○○○" required>
-                    <label for="int2">IQ 100</label>
-                    <input type="radio" name="int" id="int3" value="●●●○○" required>
-                    <label for="int3">IQ 120</label>
-                    <input type="radio" name="int" id="int4" value="●●●●○" required>
-                    <label for="int4">IQ 140</label>
-                    <input type="radio" name="int" id="int5" value="●●●●●" required>
-                    <label for="int5">IQ 160+</label>
-                </fieldset>
-                
-                <fieldset>
-                    <legend>9. Kāda mērā jūsu varonis ir prātīgs/a?</legend>
-                    <input type="radio" name="wit" id="wit1" value="●○○○○" required>
-                    <label for="wit1">Viņu var viegli apmuļķot</label>
-                    <input type="radio" name="wit" id="wit2" value="●●○○○" required>
-                    <label for="wit2">Pietiekami ātri reaģē</label>
-                    <input type="radio" name="wit" id="wit3" value="●●●○○" required>
-                    <label for="wit3">Grūti pārsteigt</label>
-                    <input type="radio" name="wit" id="wit4" value="●●●●○" required>
-                    <label for="wit4">Risinājumus pieņēm dažos sekunžos</label>
-                    <input type="radio" name="wit" id="wit5" value="●●●●●" required>
-                    <label for="wit5">Domā un reaģē ātrāk nekā darā</label>
-                </fieldset>
-                
-                <fieldset>
-                    <legend>10. Vai par viņu var pateikt, ka viņš/a ir apņēmīgs/a?</legend>
-                    <input type="radio" name="res" id="res1" value="●○○○○" required>
-                    <label for="res1">Bieži pamēta uzsakto</label>
-                    <input type="radio" name="res" id="res2" value="●●○○○" required>
-                    <label for="res2">Var normāli veikt dārbus stabīlajos apstākļos</label>
-                    <input type="radio" name="res" id="res3" value="●●●○○" required>
-                    <label for="res3">Dažreiz viņš/viņa var izpildīt dažu cilvēku darbu</label>
-                    <input type="radio" name="res" id="res4" value="●●●●○" required>
-                    <label for="res4">Biedri uzticas un godinā viņu par apņēmību</label>
-                    <input type="radio" name="res" id="res5" value="●●●●●" required>
-                    <label for="res5">Dara visu līdz galām, pat ja viss iet ne tik labi kā vēlas</label>
-                </fieldset>
-                <input type="submit">
-            </form>
+        <div class="wrapper">
+            <header>
+                <h1>Kāds ir jusu varonis?</h1>
+                <p>Šeit Jūs varat uzzināt, par cik jūsu varonis ir stiprs, ātrs, prātīgs u.t.t.. Jums būs vajadzīgi pierakstīt atbildes uz jautājumiem, lai to uzzināt.</p>
+            </header>
+            <div>
+                <h3>Varoņu izveidošanas palīgs</h3>
+                <form id="Form" action="/submit" method="POST">
+                    <fieldset>
+                        <legend>1. Kāds ir jūsu varoņa vārds?</legend>
+                        <input class="answ" type="text" name="nam" required placeholder="Vārds Uzvārds">
+                    </fieldset>
+                    
+                    <fieldset>
+                        <legend>2. Cik smagu kravu/objektu var pacelt jūsu varonis?</legend>
+                        <div class="radio-column">
+                            <label>
+                                <input class="answ" type="radio" name="str" id="str1" value="●○○○○" required>
+                                20 kg
+                            </label>
+                            <label>
+                                <input class="answ" type="radio" name="str" id="str2" value="●●○○○" required>
+                                45 kg
+                            </label>
+                            <label>
+                                <input class="answ" type="radio" name="str" id="str3" value="●●●○○" required>
+                                110 kg
+                            </label>
+                            <label>
+                                <input class="answ" type="radio" name="str" id="str4" value="●●●●○" required>
+                                180 kg
+                            </label>
+                            <label>
+                                <input class="answ" type="radio" name="str" id="str5" value="●●●●●" required>
+                                295 kg
+                            </label>
+                        </div>
+                    </fieldset>
+                    
+                    <fieldset>
+                        <legend>3. Kādā mērā viņš/viņa ir veikls/a?</legend>
+                        <div class="radio-column">
+                            <label>
+                                <input class="answ" type="radio" name="dex" id="dex1" value="●○○○○" required>
+                                Neveikls/a
+                            </label>
+                            <label>
+                                <input class="answ" type="radio" name="dex" id="dex2" value="●●○○○" required>
+                                Normāls cilvēks
+                            </label>
+                            <label>
+                                <input class="answ" type="radio" name="dex" id="dex3" value="●●●○○" required>
+                                Atlets/e
+                            </label>
+                            <label>
+                                <input class="answ" type="radio" name="dex" id="dex4" value="●●●●○" required>
+                                Akrobāts
+                            </label>
+                            <label>
+                                <input class="answ" type="radio" name="dex" id="dex5" value="●●●●●" required>
+                                Neiespējami veikls/a
+                            </label>
+                        </div>
+                    </fieldset>
+                    
+                    <fieldset>
+                        <legend>4. Kāda veselība ir viņam/ai?</legend>
+                        <div class="radio-column">
+                            <label>
+                                <input class="answ" type="radio" name="sta" id="sta1" value="●○○○○" required>
+                                Vējš var izgāzt no kājam
+                            </label>
+                            <label>
+                                <input class="answ" type="radio" name="sta" id="sta2" value="●●○○○" required>
+                                Vienu vai divus sitienus var izturēt
+                            </label>
+                            <label>
+                                <input class="answ" type="radio" name="sta" id="sta3" value="●●●○○" required>
+                                Rēti slimo
+                            </label>
+                            <label>
+                                <input class="answ" type="radio" name="sta" id="sta4" value="●●●●○" required>
+                                Var uzvarēt maratonā
+                            </label>
+                            <label>
+                                <input class="answ" type="radio" name="sta" id="sta5" value="●●●●●" required>
+                                Herakls
+                            </label>
+                        </div>
+                    </fieldset>
+                    
+                    <fieldset>
+                        <legend>5. Kādā mērā jūsu varonis var izveidot labu iespaidu par sevi?</legend>
+                        <div class="radio-column">
+                            <label>
+                                <input class="answ" type="radio" name="cha" id="cha1" value="●○○○○" required>
+                                Cilvēki nevēlās rūnāt
+                            </label>
+                            <label>
+                                <input class="answ" type="radio" name="cha" id="cha2" value="●●○○○" required>
+                                Ir daži draugi
+                            </label>
+                            <label>
+                                <input class="answ" type="radio" name="cha" id="cha3" value="●●●○○" required>
+                                Viņu vēlas klausīt
+                            </label>
+                            <label>
+                                <input class="answ" type="radio" name="cha" id="cha4" value="●●●●○" required>
+                                Ir attistīts personīgs magnetisms
+                            </label>
+                            <label>
+                                <input class="answ" type="radio" name="cha" id="cha5" value="●●●●●" required>
+                                Var kļut par kultūras priekšvādītāju
+                            </label>
+                        </div>
+                    </fieldset>
+                    
+                    <fieldset>
+                        <legend>6. Kāda spēja pārliecināt piemīt viņam/ai?</legend>
+                        <div class="radio-column">
+                            <label>
+                                <input class="answ" type="radio" name="man" id="man1" value="●○○○○" required>
+                                Vājā
+                            </label>
+                            <label>
+                                <input class="answ" type="radio" name="man" id="man2" value="●●○○○" required>
+                                Var dažreiz ietekmēt citu domu
+                            </label>
+                            <label>
+                                <input class="answ" type="radio" name="man" id="man3" value="●●●○○" required>
+                                Var diezgan labi manipulēt
+                            </label>
+                            <label>
+                                <input class="answ" type="radio" name="man" id="man4" value="●●●●○" required>
+                                Viņš/viņa varētu kļut par politiku
+                            </label>
+                            <label>
+                                <input class="answ" type="radio" name="man" id="man5" value="●●●●●" required>
+                                Var pārliecināt izdarīt jebko viņš/viņa prasa
+                            </label>
+                        </div>
+                    </fieldset>
+                    
+                    <fieldset>
+                        <legend>7. Vai viņš/viņa ir mierīgs/a?</legend>
+                        <div class="radio-column">
+                            <label>
+                                <input class="answ" type="radio" name="com" id="com1" value="●○○○○" required>
+                                Ir gruti savaldīt jūtas
+                            </label>
+                            <label>
+                                <input class="answ" type="radio" name="com" id="com2" value="●●○○○" required>
+                                Pietiekami stabīls/a
+                            </label>
+                            <label>
+                                <input class="answ" type="radio" name="com" id="com3" value="●●●○○" required>
+                                Diezgan grūti provocējams/jama
+                            </label>
+                            <label>
+                                <input class="answ" type="radio" name="com" id="com4" value="●●●●○" required>
+                                Ļoti mierīgs/a
+                            </label>
+                            <label>
+                                <input class="answ" type="radio" name="com" id="com5" value="●●●●●" required>
+                                Nekas nevar satraucēt
+                            </label>
+                        </div>
+                    </fieldset>
+                    
+                    <fieldset>
+                        <legend>8. Kāds ir IQ limenis viņam/ai?</legend>
+                        <div class="radio-column">
+                            <label>
+                                <input class="answ" type="radio" name="int" id="int1" value="●○○○○" required>
+                                IQ 80
+                            </label>
+                            <label>
+                                <input class="answ" type="radio" name="int" id="int2" value="●●○○○" required>
+                                IQ 100
+                            </label>
+                            <label>
+                                <input class="answ" type="radio" name="int" id="int3" value="●●●○○" required>
+                                IQ 120
+                            </label>
+                            <label>
+                                <input class="answ" type="radio" name="int" id="int4" value="●●●●○" required>
+                                IQ 140
+                            </label>
+                            <label>
+                                <input class="answ" type="radio" name="int" id="int5" value="●●●●●" required>
+                                IQ 160+
+                            </label>
+                        </div>
+                    </fieldset>
+                    
+                    <fieldset>
+                        <legend>9. Kāda mērā jūsu varonis ir prātīgs/a?</legend>
+                        <div class="radio-column">
+                            <label>
+                                <input class="answ" type="radio" name="wit" id="wit1" value="●○○○○" required>
+                                Viņu var viegli apmuļķot
+                            </label>
+                            <label>
+                                <input class="answ" type="radio" name="wit" id="wit2" value="●●○○○" required>
+                                Pietiekami ātri reaģē
+                            </label>
+                            <label>
+                                <input class="answ" type="radio" name="wit" id="wit3" value="●●●○○" required>
+                                Grūti pārsteigt
+                            </label>
+                            <label>
+                                <input class="answ" type="radio" name="wit" id="wit4" value="●●●●○" required>
+                                Risinājumus pieņēm dažos sekunžos
+                            </label>
+                            <label>
+                                <input class="answ" type="radio" name="wit" id="wit5" value="●●●●●" required>
+                                Domā un reaģē ātrāk nekā darā
+                            </label>
+                        </div>
+                    </fieldset>
+                    
+                    <fieldset>
+                        <legend>10. Vai par viņu var pateikt, ka viņš/a ir apņēmīgs/a?</legend>
+                        <div class="radio-column">
+                            <label>
+                                <input class="answ" type="radio" name="res" id="res1" value="●○○○○" required>
+                                Bieži pamēta uzsakto
+                            </label>
+                            <label>
+                                <input class="answ" type="radio" name="res" id="res2" value="●●○○○" required>
+                                Var normāli veikt dārbus stabīlajos apstākļos
+                            </label>
+                            <label>
+                                <input class="answ" type="radio" name="res" id="res3" value="●●●○○" required>
+                                Dažreiz viņš/viņa var izpildīt dažu cilvēku darbu
+                            </label>
+                            <label>
+                                <input class="answ" type="radio" name="res" id="res4" value="●●●●○" required>
+                                Biedri uzticas un godinā viņu par apņēmību
+                            </label>
+                            <label>
+                                <input class="answ" type="radio" name="res" id="res5" value="●●●●●" required>
+                                Dara visu līdz galām, pat ja viss iet ne tik labi kā vēlas
+                            </label>
+                        </div>
+                    </fieldset>
+                    <input class="submit" type="submit">
+                </form>
+            </div>
         </div>
-        <footer>
-
-        </footer>
     </body>
     </html>

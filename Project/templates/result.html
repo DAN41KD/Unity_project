@@ -6,100 +6,105 @@
         <title>Gatava varoņa informācijas lapa</title>
     </head>
     <body>
-        <header class="charname">
-            {% if stats %}
-                <h1>Jūsu varoņis</h1>
-                <h2>
-                    {{ stats.vards }}
-                </h2>
+        <div class="wrapper">
+            <header class="charname">
+                {% if stats %}
+                    <h1>Jūsu varoņis</h1>
+                    <h2>
+                        {{ stats.vards }}
+                    </h2>
+                {% else %}
+                    <h1>Nav datu par varoņu</h1>
+                {% endif %}
+            </header>
+            
+            <div class="stats-container">
+                {% if stats %}
+                    <div class="output">
+                        <h3>Spēks</h3>
+                        <p>{{ stats.speks }}</p>
+                    </div>
+                    <div class="output">
+                        <h3>Veiklība</h3>
+                        <p>{{ stats.veikliba }}</p>
+                    </div>
+                    <div class="output">
+                        <h3>Izturība</h3>
+                        <p>{{ stats.izturiba }}</p>
+                    </div>
+                    <div class="output">
+                        <h3>Harizma</h3>
+                        <p>{{ stats.harizma }}</p>
+                    </div>
+                    <div class="output">
+                        <h3>Manipulācija</h3>
+                        <p>{{ stats.manipulacija }}</p>
+                    </div>
+                    <div class="output">
+                        <h3>Savaldība</h3>
+                        <p>{{ stats.savaldiba }}</p>
+                    </div>
+                    <div class="output">
+                        <h3>Intelekts</h3>
+                        <p>{{ stats.intelekts }}</p>
+                    </div>
+                    <div class="output">
+                        <h3>Prāts</h3>
+                        <p>{{ stats.prats }}</p>
+                    </div>
+                    <div class="output">
+                        <h3>Apņēmība</h3>
+                        <p>{{ stats.apnemiba }}</p>
+                    </div>
+                {% else %}
+                    <p class="warning">Nav pieejamu datu par jūsu varoņu</p>
+                {% endif %}
+            </div>
+            
+            {% if characters %}
+                <h1>Visi varoņi</h1>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                {% if characters %}
+                                    {% for column in characters[0].keys() %}
+                                    <th>{{ column|upper }}</th>
+                                    {% endfor %}
+                                {% endif %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for char in characters %}
+                                <tr>
+                                    <td>{{ char.vards }}</td>
+                                    <td>{{ char.speks }}</td>
+                                    <td>{{ char.veikliba }}</td>
+                                    <td>{{ char.izturiba }}</td>
+                                    <td>{{ char.harizma }}</td>
+                                    <td>{{ char.manipulacija }}</td>
+                                    <td>{{ char.savaldiba }}</td>
+                                    <td>{{ char.intelekts }}</td>
+                                    <td>{{ char.prats }}</td>
+                                    <td>{{ char.apnemiba }}</td>
+                                    <td>{{ char.data }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pagination">
+                {% if page > 1 %}
+                    <a href="{{ url_for('characters', page=page-1) }}">Iepriekšējā lapa</a>
+                {% endif %}
+                    <span>Lapa {{ page }} no {{ total_pages }}</span>
+                {% if page < total_pages %}
+                    <a href="{{ url_for('characters', page=page+1) }}">Nākamā lapa</a>
+                {% endif %}
+                </div>
             {% else %}
-                <h1>Nav datu par varoņu</h1>
-            {% endif %}
-        </header>
-        
-        <div class="stats-container">
-            {% if stats %}
-                <div class="output">
-                    <h3>Spēks</h3>
-                    <p>{{ stats.speks }}</p>
-                </div>
-                <div class="output">
-                    <h3>Veiklība</h3>
-                    <p>{{ stats.veikliba }}</p>
-                </div>
-                <div class="output">
-                    <h3>Izturība</h3>
-                    <p>{{ stats.izturiba }}</p>
-                </div>
-                <div class="output">
-                    <h3>Harizma</h3>
-                    <p>{{ stats.harizma }}</p>
-                </div>
-                <div class="output">
-                    <h3>Manipulācija</h3>
-                    <p>{{ stats.manipulacija }}</p>
-                </div>
-                <div class="output">
-                    <h3>Savaldība</h3>
-                    <p>{{ stats.savaldiba }}</p>
-                </div>
-                <div class="output">
-                    <h3>Intelekts</h3>
-                    <p>{{ stats.intelekts }}</p>
-                </div>
-                <div class="output">
-                    <h3>Prāts</h3>
-                    <p>{{ stats.prats }}</p>
-                </div>
-                <div class="output">
-                    <h3>Apņēmība</h3>
-                    <p>{{ stats.apnemiba }}</p>
-                </div>
-            {% else %}
-                <p class="warning">Nav pieejamu datu par jūsu varoņu</p>
+                <p class="warning">Nav reģistrētu varoņu</p>
             {% endif %}
         </div>
-        
-        {% if characters %}
-            <h2>Visi varoņi</h2>
-            <table>
-                <thead>
-                    <tr>
-                        {% if characters %}
-                            {% for column in characters[0].keys() %}
-                            <th>{{ column|upper }}</th>
-                            {% endfor %}
-                        {% endif %}
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for char in characters %}
-                        <tr>
-                            <td>{{ char.vards }}</td>
-                            <td>{{ char.speks }}</td>
-                            <td>{{ char.veikliba }}</td>
-                            <td>{{ char.izturiba }}</td>
-                            <td>{{ char.harizma }}</td>
-                            <td>{{ char.manipulacija }}</td>
-                            <td>{{ char.savaldiba }}</td>
-                            <td>{{ char.intelekts }}</td>
-                            <td>{{ char.prats }}</td>
-                            <td>{{ char.apnemiba }}</td>
-                            <td>{{ char.data }}</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-            <div class="pagination">
-                <a href="{{ url_for('characters', page=page-1) }}"
-                    {% if page <= 1 %}style="visibility: hidden"{% endif %}>
-                    Iepriekšējā lapa
-                </a>
-                <span>Lapa {{ page }}</span>
-                <a href="{{ url_for('characters', page=page+1) }}">Nākamā lapa</a>
-            </div>
-        {% else %}
-            <p class="warning">Nav reģistrētu varoņu</p>
-        {% endif %}
     </body>
 </html>

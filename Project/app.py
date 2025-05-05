@@ -59,18 +59,14 @@ def submit():
     conn.close()
     return redirect(url_for('characters'))
 
-def get_chars():
+def get_chars(page=1, per_page=10):
     conn = sqlite3.connect('database.db')
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
-    sort_columns = ['vards', 'speks', 'veikliba', 'izturiba', 'harizma', 'manipulacija', 'savaldiba', 'intelekts', 'prats', 'apnemiba', 'data']
-    sort_by = request.args.get('sort', 'data')
-    if sort_by not in sort_columns:
-        sort_by = 'data'
     page = request.args.get('page', 1, type=int)
     per_page = 10
     offset = (page - 1) * per_page
-    cursor.execute('SELECT vards, speks, veikliba, izturiba, harizma, manipulacija, savaldiba, intelekts, prats, apnemiba, data FROM characters ORDER BY "{sort_by}" LIMIT ? OFFSET ?', (per_page, offset))
+    cursor.execute('SELECT vards, speks, veikliba, izturiba, harizma, manipulacija, savaldiba, intelekts, prats, apnemiba, data FROM characters ORDER BY data DESC LIMIT ? OFFSET ?', (per_page, offset))
     characters = cursor.fetchall()
     conn.close()
     return characters
@@ -86,10 +82,24 @@ def get_current_char():
 
 @app.route('/result')
 def characters():
-    characters = get_chars()
-    stats = get_current_char()
-    page = request.args.get('page', 1, type=int)
-    return render_template('result.html', characters=characters, stats=stats, page=page)
+    try:
+        page = request.args.get('page', 1, type=int)
+        per_page = 10
+        conn = sqlite3.connect('database.db')
+        cursor = conn.cursor()
+        cursor.execute('SELECT COUNT(*) FROM characters')
+        total_records = cursor.fetchone()[0]
+        conn.close
+        
+        total_pages = (total_records + per_page - 1) // per_page
+
+        characters = get_chars(page, per_page)
+        stats = get_current_char()
+        return render_template('result.html', characters=characters, stats=stats, page=page, total_pages=total_pages)
+    except sqlite3.OperationalError as e:
+        return f"DB kļūda: {str(e)}", 500
+    except Exception as e:
+        return f"Kļūda: {str(e)}", 500
 
 if __name__ == '__main__':
   app.run(debug=True)
